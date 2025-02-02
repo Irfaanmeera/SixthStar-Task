@@ -30,5 +30,11 @@ export class UserRepository
     return await this.findAll();
   }
 
+  async getUserGroups() {
+    return await User.aggregate([
+      { $group: { _id: '$group', count: { $sum: 1 } } }
+    ]);
+  }
+
 
 }

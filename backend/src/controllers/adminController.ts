@@ -50,4 +50,15 @@ export class AdminController {
       }
     }
   }
+  async getUserSatistics(req: Request, res: Response, next: NextFunction){
+    try{
+      const statistics = await this.adminService.getUserStatistics();
+      console.log("Controller statistics",statistics)
+      res.json(statistics);
+    }catch(error){
+      if (error instanceof Error) {
+        next(error);
+      }
+    }
+  }
 }

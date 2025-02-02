@@ -10,6 +10,7 @@ const adminController = new AdminController(adminService);
 
 adminRouter.post('/createUser', (req, res, next) => { adminController.createUser(req, res, next); });
 adminRouter.get('/users', (req, res, next) => { adminController.getAllUsers(req, res, next); })
+adminRouter.get('/userGroups', (req, res, next) => { adminController.getUserSatistics(req, res, next); })
 
 export default adminRouter;
 

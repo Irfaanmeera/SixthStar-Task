@@ -32,4 +32,14 @@ export class AdminService implements IAdminService {
       throw new BadRequestError("Error fetching data");
     }
   }
+  async getUserStatistics() {
+    try{
+     const userGroup =  await this.userRepository.getUserGroups();
+     return userGroup;
+    }catch(error){
+      console.error(error);
+      throw new BadRequestError("Error fetching data");
+    }
+
+  }
 }

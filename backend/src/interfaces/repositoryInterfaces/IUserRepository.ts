@@ -5,4 +5,5 @@ export interface IUserRepository {
     findUserByEmail(email: string): Promise<IUser | null>;
     findUserById(userId: string): Promise<IUser | null>;
     getAllUsers(): Promise<IUser[] | null>;
+    getUserGroups(): Promise<IUser[]>;
 }
