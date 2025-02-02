@@ -23,6 +23,16 @@ export class AdminService implements IAdminService {
     }
   }
 
+  async updateUser(userData: IUser): Promise<IUser> {
+    try {
+      return await this.userRepository.updateUser(userData);
+    } catch (error) {
+      console.error(error);
+      throw new Error(
+        "An error occurred while updating the user. Please try again."
+      );
+    }
+  }
   async getAllUsers(): Promise<IUser[]> {
     try {
       const users = await this.userRepository.getAllUsers();
@@ -33,13 +43,23 @@ export class AdminService implements IAdminService {
     }
   }
   async getUserStatistics() {
-    try{
-     const userGroup =  await this.userRepository.getUserGroups();
-     return userGroup;
-    }catch(error){
+    try {
+      const userGroup = await this.userRepository.getUserGroups();
+      return userGroup;
+    } catch (error) {
       console.error(error);
       throw new BadRequestError("Error fetching data");
     }
 
+  }
+  async deleteUser(id: string): Promise<void> {
+
+    try {
+      console.log(id)
+      await this.userRepository.deleteUser(id);
+    } catch (error) {
+      console.error(error);
+      throw new BadRequestError("Error deleting data");
+    }
   }
 }

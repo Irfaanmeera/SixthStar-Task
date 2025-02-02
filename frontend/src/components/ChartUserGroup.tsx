@@ -1,18 +1,17 @@
 import React, { useEffect, useState } from "react";
 import ReactApexChart from "react-apexcharts";
 import { ApexOptions } from "apexcharts";
-import { getUserStatistics } from "../api/adminApi"; // Assuming this function fetches user group statistics
+import { getUserStatistics } from "../api/adminApi";
 
 const CharUserGroup: React.FC = () => {
   const [chartData, setChartData] = useState({ series: [], labels: [] });
 
-  // Fetch the user group data and update the chart data
   const fetchChartData = async () => {
     try {
-      const userGroups = await getUserStatistics(); // This API fetches user group statistics
-      console.log('Chart userGroups', userGroups)
-      const labels = userGroups.map((group: { _id: string }) => group._id); // Group names as labels
-      const series = userGroups.map((group: { count: number }) => group.count); // User counts as series
+      const userGroups = await getUserStatistics();
+      console.log("Chart userGroups", userGroups);
+      const labels = userGroups.map((group: { _id: string }) => group._id);
+      const series = userGroups.map((group: { count: number }) => group.count);
       setChartData({ labels, series });
     } catch (error) {
       console.error("Error fetching chart data:", error);
@@ -46,7 +45,7 @@ const CharUserGroup: React.FC = () => {
       enabled: false,
     },
     tooltip: {
-      theme: "light", // Set the tooltip background to white when hovering
+      theme: "light",
       style: {
         fontSize: "14px",
         fontFamily: "Satoshi, sans-serif",
@@ -60,9 +59,7 @@ const CharUserGroup: React.FC = () => {
   return (
     <div className="sm:px-7.5 col-span-12 rounded-sm border border-stroke bg-white px-5 pb-5 pt-7.5 shadow-default xl:col-span-5">
       <div className="mb-3 flex justify-between gap-4 sm:flex">
-        <h5 className="text-xl font-semibold text-black">
-          User Groups
-        </h5>
+        <h5 className="text-xl font-semibold text-black">User Groups</h5>
       </div>
 
       <div className="mb-2 flex justify-center">

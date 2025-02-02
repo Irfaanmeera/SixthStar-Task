@@ -1,23 +1,25 @@
 import React from "react";
-// import SearchIcon from "@mui/icons-material/Search"; // Importing the search icon from Material UI
 
 interface SearchBarProps {
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  searchTerm: string;
+  onSearch: (term: string) => void;
+  placeholder: string;
 }
 
-const SearchBar: React.FC<SearchBarProps> = ({ onChange }) => {
+const SearchBar: React.FC<SearchBarProps> = ({
+  searchTerm,
+  onSearch,
+  placeholder,
+}) => {
   return (
     <div className="relative w-full max-w-xs mb-5">
       <input
         type="text"
-        placeholder="Search..."
+        placeholder={placeholder}
+        value={searchTerm}
+        onChange={(e) => onSearch(e.target.value)}
         className="border rounded-lg px-3 py-2 w-full"
-        onChange={onChange}
       />
-      {/* <SearchIcon
-        className="absolute right-0 p-1  rounded-lg top-1/2 transform -translate-y-1/2 text-gray cursor-pointer"
-        style={{ fontSize: "2.4rem", backgroundColor: "#043B64" }}
-      /> */}
     </div>
   );
 };

@@ -11,8 +11,8 @@ export class BaseRepository<T> {
   async create(data: Partial<T>): Promise<T> {
     const document = new this.model(data);
     const savedDocument = await document.save();
-    return savedDocument.toObject() as T; 
-}
+    return savedDocument.toObject() as T;
+  }
 
   async findOne(filter: Partial<T>): Promise<T | null> {
     return await this.model.findOne(filter).exec();

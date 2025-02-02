@@ -1,15 +1,11 @@
 import React from "react";
-import logo from "/logo.webp";
 import { NavLink } from "react-router-dom";
-// import LogoutIcon from "@mui/icons-material/Logout";
+import LogoutIcon from "@mui/icons-material/Logout";
 
 const Sidebar: React.FC = () => {
   const menuItems = [
     { name: "Dashboard", path: "/admin" },
     { name: "User List", path: "/admin/users" },
-    { name: "Transaction List", path: "/admin/transactions" },
-    { name: "Video Management", path: "/admin/videos" },
-    { name: "Top Receivers List", path: "/admin/receivers" },
   ];
 
   return (
@@ -18,8 +14,8 @@ const Sidebar: React.FC = () => {
       style={{ backgroundColor: "#043B64" }}
     >
       {/* Logo */}
-      <div className="flex ml-5 mt-7 mb-10">
-        <img src={logo} alt="Company Logo" className="h-10 w-auto" />
+      <div className="flex ml-5 mt-9 mb-12">
+        <p className="text-white text-2xl font-bold">Admin Panel</p>
       </div>
 
       {/* Menu Items */}
@@ -28,8 +24,9 @@ const Sidebar: React.FC = () => {
           <React.Fragment key={index}>
             <NavLink
               to={item.path}
-              className={({ isActive }: { isActive: boolean })=>
-                `block py-2 pl-5 pr-0  rounded-sm text-left ${
+              end
+              className={({ isActive }) =>
+                `block py-2 pl-5 pr-0 rounded-sm text-left ${
                   isActive
                     ? "bg-white text-midnightblue rounded-r-sm"
                     : "hover:bg-white hover:text-midnightblue"
@@ -48,7 +45,7 @@ const Sidebar: React.FC = () => {
 
       {/* Logout Button */}
       <button className="flex items-center mt-3 py-2 pl-5 rounded-lg text-left text-white hover:bg-white hover:text-midnightblue">
-        {/* <LogoutIcon className="h-5 w-5 text-left mr-2" /> */}
+        <LogoutIcon className="h-5 w-5 text-left mr-2" />
         Logout
       </button>
     </div>

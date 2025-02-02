@@ -26,6 +26,17 @@ export class UserRepository
     }
     return user;
   }
+
+  async updateUser(userData: IUser): Promise<IUser> {
+    const { id, name, email, group } = userData;
+    const user = await this.findById(id);
+    if (!user) {
+      throw new BadRequestError("User not found");
+    }
+    user.set({ name, email, group });
+    return await user.save();
+  }
+
   async getAllUsers(): Promise<IUser[]> {
     return await this.findAll();
   }
@@ -35,6 +46,9 @@ export class UserRepository
       { $group: { _id: '$group', count: { $sum: 1 } } }
     ]);
   }
-
+  async deleteUser(id: string): Promise<void> {
+    console.log(id)
+    await this.deleteById(id);
+  }
 
 }
